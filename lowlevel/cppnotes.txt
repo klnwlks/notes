@@ -1,0 +1,452 @@
+C++ notes
+
+end every statement with ;
+compile with g++
+also dont use namespace std
+
+--- data types
+
+initialize vars with {}
+int // integers
+char // characters
+float // floating point integers
+double // double float
+void // null
+bool // boolean
+
+-- extra stuff
+
+const // var doesn't change values
+static // var stays until the end of the program
+unsigned // positive ints
+signed // idfk, any int?
+short // short size
+long // long size
+
+--- the main program starts at main(){}
+
+these functions require to have "#include <iostream>" as a preprocessor to work
+also DO NOT include "using namespace std", use std:: as a namespace
+
+-- Standard I/O
+
+cout << var // prints out the variable
+cin >> var // takes user input
+
+--- Loops
+
+for // should go like this for (etc; etc; etc) { statement }
+    // update to for loops, use range based statemends
+    // for (i : loop)
+while // while (argument = true) { statement }
+do while // same thing as while but upside down? runs atleast once before checking conditions
+
+--- Statements
+
+you should know what these do.
+
+If 
+Else If
+Else
+
+-- switch case
+
+use if too many ifs
+
+syntax:
+
+switch(case){
+    case 1:
+	do thing
+	break
+    case 2:
+	do thing
+	break
+
+    default:
+	do thing
+	break
+}
+
+--- Break and continue
+
+pretty self explanatory
+
+--- Standard arithmetic operators
+
++ // add
+- // subtract
+/ // divide
+* // multiply
+% // modulo, gets the remainder
+
+--- Comparing Variables
+
+== // equal 
+!= // not equal
+> // greater than
+< // less than
+>= // greater than or equal
+<= // less than or equal
+
+--- Bitwise Operators
+
+these operators fuck with the binary code itself, could be useful in some cases
+
+& // and
+| // or
+^ // xor
+~ // complement
+<< // shift left
+>> // shift right
+
+--- Functions
+
+reusable code
+basically
+returntype functionname(arguments) { statements }
+you could also make prototypes and default values (set in the prototype)
+
+end functions with return;
+return is implicit on void functions
+
+--- Strings
+
+This gets characters
+char str[] = "string"; // c style string, better with pointers
+char* str2 = "string"; // better string
+
+you could specify the string length inside the brackets
+grab strings also with:
+
+std::string varname;
+getline(cin, varname);
+
+or
+
+cin.get(varname, size);
+
+--- Arrays
+
+an assortment of data of the same type under one variable
+datatype arrayname[size] = {contents};
+arrays start at 0, keep in mind
+you could pass it to functions also
+array sizes are fixed unless you use vectors
+
+** ABOVE IS DEPRECATED **
+
+#include <array>
+std::array<datatype, size> arrayName;
+std::array arrayName; // this is also legal
+
+access element
+arrayName[index]
+arrayName.at(index)
+
+get size
+arrayName.size()
+
+-- Vectors
+
+#include <vector>
+dynamic arrays, while std::array is fixed
+std::vector<type> vectorName;
+
+access element
+vectorName[index];
+vectorName.at(index);
+
+get size
+vectorName.size();
+
+resize
+vectorName.resize(newSize);
+
+append
+vectorName.push_back(element);
+
+remove
+vectorName.pop_back();
+
+--- Structures
+
+primitive classes so to say
+struct structname {}
+goes the same as C, you could define stuff inside and also call it
+only "blueprints" for variables
+basically primitive classes
+reminder that using pointers you would have to use -> to point to their value
+
+:despair:
+- In use with Pointers
+for example:
+
+struct structname {
+    int i;
+    float f;
+}
+
+int main() {
+    structname *ptr; // wait why is this here
+    return 0;
+}
+
+pseudocode creates a pointer of structure structname
+
+--- Enumeration
+
+constant datatypes, used to specify a program's state and etc
+
+--- Classes and Objects
+
+the new things in C++
+classes are like blueprints for objects
+reminder to use -> when in use with pointers
+
+for examples
+
+theres also public and privates
+privates cannot be accessed directly from main
+
+class className {
+    private:
+    // data
+    public:
+	className() {} // constructor
+    // functions
+};
+
+
+--- Objects
+
+when a class is defined, only the specification for the object is defined, nio memory or storage is allocated.
+
+To use the data, use objects
+
+syntax for objects
+
+className objectvarname;
+
+you can access the data members and it's functions by using a dot. i.e.
+
+class.function();
+
+for data members
+class.member = int;
+
+--- Inheritance
+
+you can inherit functions and objects of another class aslong as it's public
+syntax:
+
+class className : public anotherclassName {}
+
+--- Constructors
+
+special type of member functions in classes, is called automatically when a new object is made 
+syntax:
+
+class className {
+    public:
+	constructorName(){
+	    //code
+	}
+};
+
+you can also make constructors with parameters
+like this
+
+class className {
+    public:
+    
+	constructorName(datatype paramName){
+	    //maybe initialize private variables
+	}
+};
+
+int main(){
+    className object1(params);
+    return 0;
+}
+
+you can also send parameters to classes and pass them through a function
+
+--- Pointers
+
+:despair:
+use unique_ptr instead
+pointers save the address of variables
+to print the address, use & as a prefix on the variable
+reminder to treat pointers as a separate datatype that will hold the address of a fixed type
+
+syntax for declaring pointers
+
+datatype *pointVar;
+
+but this is preferred
+
+datatype* pointVar;
+
+declaring a pointer and a normal var
+
+int* pointVar, p;
+
+assigning addresses to pointers
+
+int* pointVar, var;
+var = 5
+
+pointVar = &var;
+
+to print address with point
+
+std::cout << pointVar
+
+to print the content of the pointer
+this dereferences the pointer aka gets the value
+
+std::cout << *pointVar
+
+you can change the value the pointer points to by doing this
+
+*pntrVar = newContent;
+
+- In use with arrays
+
+works pretty much the same way, although you can only point on one of the array elements
+i.e
+pntr = &arr[0];
+is the same as
+pntr = arr;
+
+you can also add elements to an array via pointers
+syntax:
+
+cin >> *(arr + i);
+
+--- Memory Management
+
+new = allocates memory to a variable
+
+syntax for new
+
+pointerVar = new datatype;
+
+delete = deletes the memory allocated to a variable
+
+syntax
+
+delete pointerVariable;
+
+-- Friend Functions
+
+can access private and protected data of another class
+
+you can declare it by using the friend function inside of a class
+
+--- References
+
+while pointers are cool and all, references are better in use.
+example:
+
+function(int &var){
+    var = 10;
+}
+
+int main(){
+    int var = 5;
+    function(var);
+    printf("%d\n", var);
+}
+
+it's basically pointers without the extreme stupidity, isn't it great?
+
+--- Namespaces
+
+they exist, good for OOP
+
+namespace nsName {
+    class Thing {
+	private:
+	    vars
+	public:
+	    function(){}
+    }
+}
+
+--- Templates
+
+they give me aneurysms
+
+-- Type aliases
+
+alias for types
+using custom_type_name = datatype;
+
+-- Function overloading
+
+aneurysm v2
+
+-- Type casting
+static_cast<type>(var)
+
+-- Function Pointer
+
+returntype (*functionpointername)(args) { &function };
+functionpointername(args)
+
+apparently default args dont work on function pointers
+
+-- Ellipsis 
+
+as many arguments as you want boiiiii
+...
+
+-- Basic library funcs
+
+std::find -- find occurence of element in arr/vector
+std::find_if -- more specific find
+std::count -- count occurence of thing in arr/vec
+std::sort -- custom sort with function param
+
+-- Lambdas
+
+anonymous functions, one time use functions 
+[](args){code}
+
+-- Maps
+
+#include <unordered_map>
+
+hashmaps
+associative containers that are formed by a key value and a mapped value
+think of dicts in python
+
+std::map<type, type> var;
+// std::map<type that will hold key, type that will hold value>
+
+var.insert(std::make_pair(key, value))
+var.insert({key, value})
+var[key] = value;
+var.find(key)
+var.erase(key)
+
+-- Set
+
+associative elements that a formed with unique values
+aka array but fancy
+set<type> var;
+
+-- Smart pointers
+
+pointers, but better
+
+#include <memory>
+
+unique pointers, that can only have one owner to a value
+std::unique_ptr<Type> var(new Type) // declaration + value
+shared pointers, that can have multiple owners
+st::shared_ptr<Type> var(new Type) // declaration
+references, pointers but simpler
+&var
