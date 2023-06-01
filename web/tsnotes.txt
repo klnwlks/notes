@@ -1,0 +1,59 @@
+typescript more like snoreeeeeee mimimimi
+
+- js with types
+that's all
+
+- variable declaration
+let variable : Type
+ts supports type inferencing for most simple types (string, number, boolean)
+
+ts also supports the "any" keyword to avoid typechecking
+
+- arrays
+type[]
+
+- type declaration, aka enums/unions whatever you wanna call em
+type typename = type | type2
+
+or on the fly declarations
+function func(param: type | type1)
+
+or just make structs lol
+type typename = {
+    var: Type;
+    var2: Type;
+}
+
+extending types
+type Type2 = type1 & {
+    ///
+}
+
+- structs
+ts does pretty well in type inference aslong as they have the same shape
+
+interface interfacename {
+    var: Type;
+    var2: Type;
+}
+
+interface int2 extends int1 {
+    //
+}
+
+- functions
+function func(param: Type): returnType {
+    ///
+    return ...
+}
+
+you can also specify optional params in functions with a "?" operator
+function func(obj: { param1: Type; param2?: Type })
+
+- type assertions
+more specific declarations
+
+let var = value as Type;
+let var = <Type>value;
+
+postfix ! can remove undefined idk

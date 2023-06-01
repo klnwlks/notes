@@ -1,0 +1,139 @@
+-- notes for vue.js
+
+include vue.js to use it lol
+
+- the concept of vue js is to easily declare data to the document with simple syntax
+- You can make new "vue" objects by making a new "Vue" object, you can attach them to an html element with el or il idk
+
+--- INSTANCES
+
+- the heart of a vue.js app.
+
+- syntax:
+var app = new Vue({
+    // stuff here
+})
+
+- when a vue instance is created, all of it's properties are in the "data" object within its system, when such values change, the data within the vue object also changes, being "reactive"
+
+- note that properties in data are only reactive if they existed when the instance was created.
+
+-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with $ to differentiate them from user-defined properties.
+
+-- LIFECYCLE HOOKS
+Each vue instance goes thru an initialization when its created, along the way, it runs functions called "lifecycle hooks", giving you oppurtunities to add their own code at specific stages.
+
+- for example, the "created" hook can be used to add code after a succesful creation of an instance.
+
+- there are also other hooks that can be alled in different stages, such as mounted, updated and destroyed.
+
+-- DIRECTIVES
+
+- directives are prefixed with "v-" to show that they are special attributes made by Vue.
+
+
+- v-bind
+binds on the vue instance, does something on specific arguments
+binds a variable to an html attribute
+
+- v-if
+if conditinals, does thing when thing happens
+
+- v-for
+for loop
+
+- v-on
+on a certain event happening, do thing
+i.e pressing a button
+theres also like
+.stop
+.prevent
+.capture
+.self
+.once
+.passive
+oh it can also do keymodifiers, which is pretty cool
+
+- there's also dynamic arguments, by wrapping a directive argument in square brackets
+i.e 
+<a v-bind:[attributeName]="url">stuff</a>
+
+- v-show
+displays property
+
+- v-model
+two way data bindings
+
+- theres also shorthands so yeah
+
+-- TEMPLATES
+
+- well, they're templates, for easy and reusale ways to do stuff
+
+- Interpolations
+binding data to something, for example
+you can do one-time interpolations with the v-once directive, but keed in mind this will also affect all bindings on the same node.
+
+text
+<span>Message: {{ msg }}</span>
+
+raw html
+either using {{mustache}} or
+v-html directive
+
+attributes
+only possible using v-bind directive
+
+fuckin js expressions
+lol cuz why not, you can do that with mustaches and v-binds or something
+
+-- COMPONENT SYSTEM
+very fucking useful, you're able to reuse stuff and etc.
+
+- declare with this syntax
+Vue.component('item-template', {
+    template: "<tag></tag>";
+})
+then, you can now use it on your css or something, for example : <item-template>content</item-template>
+
+but that's boring, since that renders the same content, here's a better syntax you will likely use.
+
+Vue.component('item-template', {
+    prop: ['content'],
+    template: "<tag>{{content}}</tag>",
+})
+
+now you can do
+<item-template content="text"></item-template>
+
+-- COMPUTED WATCHERS AND PROPERTIES
+
+- functions or something lmao
+
+- computed properties
+for example
+var app = new Vue({
+    el: "#element",
+    data: {
+	message: "Hello"
+    },
+    computed: {
+	reverseMessage: function(){
+	    return this.message.split('').reverse().join('')
+	}
+    }
+})
+
+honestly just functions inside a vue instance
+
+theres also watch which does the same thing
+computed properties also getters and setters lol
+
+- watchers
+while computed properties are better in most scenarios, there are times when a custom watcher is needed.
+
+basically not async stuff, very simple
+
+--- CLASS AND STYLE BINDING
+
+you can do it with basic v-bind:class  

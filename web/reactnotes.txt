@@ -1,0 +1,137 @@
+--- REACT JS
+
+- mustaches are declared by
+{ value }
+
+- use camelCase
+
+-- JSX
+you can put html expressions in js
+
+const var = <h1>stuff</h1>;
+
+-- INSTANCES
+
+ReactDOM.render(
+    <!-- html goes here -->,
+    document.getElementById('id')
+);
+
+-- COMPONENTS
+reminder that as this is a class so you have to use "this."
+
+setState() = edit a specific prop in your component
+if for example, you want to do some state updates that whatveer, use a function
+i.e.
+this.setState((state, props)) = ({
+    propdata: state.propdata. + props.increment
+});
+
+(inside a class)
+handleEvent(e) {
+    this.setState({prop: e.target.value});
+}
+
+class componentName extends React.Component {
+    constructor(arguments){
+	super(arguments);
+	this.state = { props: "data" }; // state is pretty much like props
+    }
+    function(){
+	// do thing;
+    }
+    render(){
+	return (
+	    <div class="template">
+		<p>this.example.text</p>
+	    </div>
+	);
+    }
+}
+
+or just
+
+function componentName(){
+    return (
+	<p> html </p>
+    );
+}
+
+<componentName />
+
+but the second option is better
+
+-- LIFECYCLE HOOKS
+
+runs after successful creation of the component
+componentDidMount(){
+    // stuff to do    
+}
+
+runs before destroying the component
+componentWillUnmount(){
+    // stuff to do    
+}
+
+-- EVENTS
+
+one necessary thing to note is that since we would use functions for events usually, we would have to require a binding to work properly, for example
+
+constructor(props) {
+    super(props);
+    this.function = this.function.bind(this);
+}
+
+function() {
+    // do thing
+}
+
+-- CONDITIONAL RENDERING
+
+function handleRender(props) {
+    const isTrue = props.booleanVal;
+    if (isTrue) {
+	<ThisComponent />;
+    }
+    return <OtherComponent />
+}
+
+or keep in mind that variables can hold expressions too, so 
+if (conditional) {
+    variable = <ThisComponent />
+} else {
+    variable <OtherComponent />
+}
+
+you can also embed expressions in jsx in mustaches. real useful for conditional rendering where at first you want to check if a variable is under the correct values
+
+theres also inline shorthand if else lol
+
+you can prevent a component from rendering by returning null in a conditional block
+
+-- RENDERING MULTIPLE COMPONNENTS
+
+oh also use keys
+
+const var = array.map((arrayelement) =>
+    <li key={arrayelement.toString()}>{arrayelement}</li>
+);
+return (
+    <ul>{var}</ul
+)
+
+-- LIFTING STATE UP
+basically just having your data on the highest parent as possible, remember to use .prop instead of .state for accessing the data
+
+-- COMPOSITION AND INHERITANCE
+anything inside component tag gets passed into the componenent as a children prop
+
+-- SYNTAX DIFFERENCES
+
+html
+<button onClick="activateLasers()"></button>
+
+react
+<button onClick={activateLasers}></button>
+
+you cant really return false to prevent stuff in react, so you'd have to use preventDefault();

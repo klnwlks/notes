@@ -1,0 +1,116 @@
+pretty much alot is the same
+syntax for declaring apps are just different
+
+do "import { createApp } from 'vue'"
+
+const vueApp = {
+    data (){
+	return {
+	    variable: "data",
+	}
+    },
+    methods: {
+	 function(){
+	    // do thing
+	 }
+    },
+    computed : {
+	// do thing
+    },
+    watch : {
+
+    },
+}
+
+Vue.createApp(vueApp).mount("#html-element")
+
+HOW TO DECLARE COMPONENTS
+
+components also have slots, allowing you to place data in between
+keep in mind you would need to use v-slot to use named slots
+
+const componentItem = {
+    props: {
+	prop: data
+    },
+    template:
+	<p>{{ data }}</p>
+	<p> <slot> </slot> </p>
+}
+
+const app = Vue.createapp({
+    components: {
+	componentItem
+    },
+    emits: {
+	event: {{params}} => {}
+    }
+})
+
+app.mount("#element")
+
+theres also provide and inject i guess, if you need to access instance objects with provide, use it as a function}
+
+by default, provide and inject arent reactive but py passing a ref or reactive object you can, for example, using Vue.computed()
+
+async components can be defined by defineAsyncComponent
+
+you can use <keep-alive> tags for caching componenets
+
+oh also
+you can only use kebab-case or PascalCase in naming componenets
+
+TRANSITIONS AND ANIMATIONS
+
+you can use the in built <transition> component for animations, for large groups, use <transition-group>
+
+SFC
+
+single file components, heart and soul of refactoring
+
+OPTIONS API
+
+<script>
+export default {
+    data() {
+	return {
+	    data: 0;
+	}
+    }
+
+    methods: {
+	componentFuncs(){
+	    // do things
+	}
+    }
+
+     mounted() {
+	// do stuff at mount
+     }
+}
+</script>
+
+<template>
+    <div class="yourstuffhere">
+    </div>
+</template>
+
+Composition API
+
+<script setup>
+import {ref, onMounted} from 'vue'
+const data = ref(data) // now an active state
+
+function func() {
+    // do something with state.value
+}
+
+onMounted(() => {
+    // do stuff on mount
+})
+</script>
+
+<template>
+    <div class="yourstuffhere">
+    </div>
+</template>
